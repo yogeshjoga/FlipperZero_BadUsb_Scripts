@@ -299,7 +299,9 @@ Have questions or suggestions?
 
 - 🐛 **Issues**: [GitHub Issues](../../issues)
 - 💬 **Discussions**: [GitHub Discussions](../../discussions)
-- 📧 **Email**: [Your contact info]
+- � **GitHub**: [yogeshjoga](https://github.com/yogeshjoga/)
+- 💼 **LinkedIn**: [yogeshjoga](https://www.linkedin.com/in/yogeshjoga/)
+- 📧 **Email**: jogayogeshedu@gmail.com
 
 ---
 
