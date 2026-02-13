@@ -1,0 +1,16 @@
+REM =====================================================
+REM Title: Random Wallpaper Changer
+REM Author: yogeshjoga
+REM Target: Windows 10/11
+REM Category: Pranking
+REM Description: Changes desktop wallpaper to a random image from the internet
+REM =====================================================
+
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -WindowStyle Hidden
+ENTER
+DELAY 1000
+STRING $url='https://picsum.photos/1920/1080'; $path='$env:TEMP\wp.jpg'; (New-Object Net.WebClient).DownloadFile($url,$path); Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name Wallpaper -Value $path; rundll32.exe user32.dll,UpdatePerUserSystemParameters; exit
+ENTER

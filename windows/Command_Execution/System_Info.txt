@@ -1,0 +1,16 @@
+REM =====================================================
+REM Title: System Information Gathering
+REM Author: yogeshjoga
+REM Target: Windows 10/11
+REM Category: Command Execution
+REM Description: Collects comprehensive system information
+REM =====================================================
+
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -WindowStyle Hidden
+ENTER
+DELAY 1000
+STRING Get-ComputerInfo | Out-File $env:TEMP\sysinfo.txt; Get-WmiObject Win32_NetworkAdapterConfiguration | Where-Object {$_.IPAddress} | Out-File -Append $env:TEMP\sysinfo.txt; notepad $env:TEMP\sysinfo.txt; exit
+ENTER

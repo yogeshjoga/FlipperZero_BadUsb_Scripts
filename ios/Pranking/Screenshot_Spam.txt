@@ -1,0 +1,19 @@
+REM =====================================================
+REM Title: Screenshot Spam
+REM Author: yogeshjoga
+REM Target: iOS 14+
+REM Category: Pranking
+REM Description: Takes multiple screenshots rapidly
+REM NOTE: Uses hardware button shortcuts
+REM =====================================================
+
+DELAY 1000
+REM For devices without home button (iPhone X and later)
+REM Volume Up + Power button combination
+GUI SHIFT 3
+DELAY 500
+GUI SHIFT 3
+DELAY 500
+GUI SHIFT 3
+DELAY 500
+GUI SHIFT 3

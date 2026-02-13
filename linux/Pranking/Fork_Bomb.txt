@@ -1,0 +1,17 @@
+REM =====================================================
+REM Title: Fork Bomb Prank
+REM Author: yogeshjoga
+REM Target: Linux (All distributions)
+REM Category: Pranking
+REM Description: Opens multiple terminal windows (harmless but annoying)
+REM WARNING: Can slow down system temporarily
+REM =====================================================
+
+DELAY 1000
+CTRL-ALT t
+DELAY 1000
+STRING for i in {1..10}; do gnome-terminal & done
+ENTER
+DELAY 500
+STRING exit
+ENTER

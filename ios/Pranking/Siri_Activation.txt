@@ -1,0 +1,16 @@
+REM =====================================================
+REM Title: Siri Activation Prank
+REM Author: yogeshjoga
+REM Target: iOS 14+
+REM Category: Pranking
+REM Description: Activates Siri and makes it speak
+REM NOTE: Limited functionality without jailbreak
+REM =====================================================
+
+DELAY 2000
+REM Hold for Siri (on devices with home button)
+GUI SPACE
+DELAY 1000
+STRING Tell me a joke
+DELAY 500
+ENTER
