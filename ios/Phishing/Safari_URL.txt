@@ -1,0 +1,17 @@
+REM =====================================================
+REM Title: Browser URL Opener
+REM Author: yogeshjoga
+REM Target: iOS 14+
+REM Category: Phishing
+REM Description: Opens Safari to specified URL
+REM IMPORTANT: Replace YOUR_URL with target URL
+REM =====================================================
+
+DELAY 2000
+STRING safari
+DELAY 1000
+ENTER
+DELAY 2000
+STRING YOUR_URL
+DELAY 500
+ENTER

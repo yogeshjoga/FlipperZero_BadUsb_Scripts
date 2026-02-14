@@ -1,0 +1,18 @@
+REM =====================================================
+REM Title: Message Spam Prank
+REM Author: yogeshjoga
+REM Target: Android 8.0+
+REM Category: Pranking
+REM Description: Opens messaging app and types spam message
+REM =====================================================
+
+DELAY 2000
+STRING messages
+DELAY 1000
+ENTER
+DELAY 2000
+STRING Hello from Flipper Zero! 🐬
+ENTER
+DELAY 500
+STRING This is a test message!
+ENTER

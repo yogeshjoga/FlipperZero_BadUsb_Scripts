@@ -1,0 +1,21 @@
+REM =====================================================
+REM Title: Automated Note Creator
+REM Author: yogeshjoga
+REM Target: iOS 14+
+REM Category: Command Execution
+REM Description: Creates a note with system information
+REM =====================================================
+
+DELAY 2000
+STRING notes
+DELAY 1000
+ENTER
+DELAY 2000
+STRING Device compromised via USB
+ENTER
+STRING Flipper Zero BadUSB Test
+ENTER
+STRING Date: 
+ENTER
+DELAY 500
+GUI h

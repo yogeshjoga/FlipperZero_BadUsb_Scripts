@@ -1,0 +1,21 @@
+App(
+    appid="ble_scanner",
+    name="BLE Scanner",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="ble_scanner_app",
+    cdefines=["APP_BLE_SCANNER"],
+    requires=[
+        "gui",
+        "bt",
+        "notification",
+    ],
+    stack_size=2 * 1024,
+    order=21,
+    fap_icon="ble_scanner_icon.png",
+    fap_category="Bluetooth",
+    fap_description="BLE device scanner for IoT security testing. Discover, enumerate, and analyze Bluetooth Low Energy devices. CEH Module 16 - IoT Hacking.",
+    fap_author="yogeshjoga",
+    fap_weburl="https://github.com/yogeshjoga/FlipperZero_BadUsb_Scripts",
+    fap_version="1.0",
+    fap_icon_assets="icons",
+)

