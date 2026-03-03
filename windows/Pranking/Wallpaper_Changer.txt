@@ -1,16 +1,14 @@
 REM =====================================================
-REM Title: Random Wallpaper Changer
+REM Title: Hacker Wallpaper Changer
 REM Author: yogeshjoga
 REM Target: Windows 10/11
 REM Category: Pranking
-REM Description: Changes desktop wallpaper to a random image from the internet
+REM Description: Changes desktop wallpaper to hacker/anonymous mask photo
+REM Photo: Clint Patterson - unsplash.com/photos/dYEuFB8KQJk
 REM =====================================================
 
 DELAY 1000
 GUI r
 DELAY 500
-STRING powershell -WindowStyle Hidden
-ENTER
-DELAY 1000
-STRING $url='https://picsum.photos/1920/1080'; $path='$env:TEMP\wp.jpg'; (New-Object Net.WebClient).DownloadFile($url,$path); Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name Wallpaper -Value $path; rundll32.exe user32.dll,UpdatePerUserSystemParameters; exit
+STRING powershell -w h -c "$p='$env:TEMP\wp.jpg';(New-Object Net.WebClient).DownloadFile('https://images.unsplash.com/photo-1562813733-b31f71025d54',$p);Set-ItemProperty 'HKCU:\Control Panel\Desktop' Wallpaper $p;rundll32 user32.dll,UpdatePerUserSystemParameters"
 ENTER
